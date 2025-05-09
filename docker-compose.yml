@@ -1,0 +1,56 @@
+version: '3'
+
+services:
+  old_app_backend:
+    build:
+      context: ./Old_App/backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+    volumes:
+      - ./Old_App/backend:/app
+    restart: unless-stopped
+
+  old_app_frontend:
+    build:
+      context: ./Old_App/frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+    volumes:
+      - ./Old_App/frontend:/app
+      - /app/node_modules
+    depends_on:
+      - old_app_backend
+    restart: unless-stopped
+
+  new_app_backend:
+    build:
+      context: ./New_App/backend
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    environment:
+      - ENVIRONMENT=production
+    volumes:
+      - ./New_App/backend:/app
+    restart: unless-stopped
+
+  new_app_frontend:
+    build:
+      context: ./New_App/frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8001
+    volumes:
+      - ./New_App/frontend:/app
+      - /app/node_modules
+    depends_on:
+      - new_app_backend
+    restart: unless-stopped 
