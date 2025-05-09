@@ -3,8 +3,8 @@ version: '3'
 services:
   old_app_backend:
     build:
-      context: ./Old_App/backend
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: Old_App/backend/Dockerfile
     ports:
       - "8000:8000"
     environment:
@@ -30,8 +30,8 @@ services:
 
   new_app_backend:
     build:
-      context: ./New_App/backend
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: New_App/backend/Dockerfile
     ports:
       - "8001:8001"
     environment:
