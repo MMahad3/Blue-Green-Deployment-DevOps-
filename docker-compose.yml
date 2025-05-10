@@ -15,14 +15,14 @@ services:
 
   old_app_frontend:
     build:
-      context: ./Old_App/frontend
+      context: ./Old_App/frontend/FE
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
     environment:
       - REACT_APP_API_URL=http://old_app_backend:8000
     volumes:
-      - ./Old_App/frontend:/app
+      - ./Old_App/frontend/FE:/app
       - /app/node_modules
     depends_on:
       - old_app_backend
@@ -42,14 +42,14 @@ services:
 
   new_app_frontend:
     build:
-      context: ./New_App/frontend
+      context: ./New_App/frontend/FE
       dockerfile: Dockerfile
     ports:
       - "3001:3000"
     environment:
       - REACT_APP_API_URL=http://new_app_backend:8001
     volumes:
-      - ./New_App/frontend:/app
+      - ./New_App/frontend/FE:/app
       - /app/node_modules
     depends_on:
       - new_app_backend
