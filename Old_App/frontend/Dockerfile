@@ -1,14 +1,14 @@
-FROM node:16-alpine
+FROM node:18
 
 WORKDIR /app
 
-# Copy package files from FE directory
+# Copy package files
 COPY FE/package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy frontend source code from FE directory
+# Copy frontend source code
 COPY FE/ .
 
 # Build the application
