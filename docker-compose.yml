@@ -1,6 +1,20 @@
 version: '3'
 
 services:
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - old_app_frontend
+      - new_app_frontend
+      - old_app_backend
+      - new_app_backend
+    restart: unless-stopped
+
   old_app_backend:
     build:
       context: .
