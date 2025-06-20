@@ -1,6 +1,6 @@
 FROM nginx:alpine
 
-# Remove default nginx config
+# Delete the default Nginx configuration to avoid conflicts
 RUN rm /etc/nginx/conf.d/default.conf
 
 # Copy custom nginx config
