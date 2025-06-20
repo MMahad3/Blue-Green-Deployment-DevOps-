@@ -9,7 +9,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 # Create a directory to store SSL certificates
 RUN mkdir -p /etc/nginx/ssl
 
-# Generate self-signed SSL certificate
+# Generate a self-signed SSL/TLS certificate for local use
 RUN apk add --no-cache openssl && \
     openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
     -keyout /etc/nginx/ssl/nginx.key \
