@@ -6,7 +6,7 @@ RUN rm /etc/nginx/conf.d/default.conf
 # Add our custom Nginx configuration
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# Create directory for SSL certificates
+# Create a directory to store SSL certificates
 RUN mkdir -p /etc/nginx/ssl
 
 # Generate self-signed SSL certificate
